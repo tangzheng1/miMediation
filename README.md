@@ -1,16 +1,19 @@
 ## miMediation
 
-[miMediation](https://github.com/KiRinHong/miMediation) is a R package for performing phylogeny-based mediation test [(PhyloMed)](https://github.com/KiRinHong/PhyloMed) for microbiome data.
+miMediation is an R package for performing various mediation tests for microbiome data. It currently implements two methods CAMRA and PhyloMed listed below
+
+- CAMRA reference: Wang Q, Li Y, Peng Y, Hong Z, Tang, ZZ (2026). Error control in microbiome mediator discovery: benchmark and remedy. Submitted.
+- PhyloMed reference: Hong Q, Chen G, Tang ZZ (2023). [PhyloMed: a phylogeny-based test of mediation effect in microbiome.](https://doi.org/10.1186/s13059-023-02902-3) Genome Biology, 24(1), 1-21.
+
 
 See the following for comprehensive and up-to-date documentation:
 
 - The [miMediation R package manual](https://github.com/KiRinHong/miMediation/blob/main/miMediation_0.1.pdf).
 - The [tutorial walkthrough of the proposed PhyloMed](https://github.com/KiRinHong/miMediation/blob/main/doc/miMediation.pdf).
-- The article: Hong, Q., Chen, G., & Tang, Z. Z. (2023). [PhyloMed: a phylogeny-based test of mediation effect in microbiome.](https://doi.org/10.1186/s13059-023-02902-3) Genome Biology, 24(1), 1-21.
 
 ## Author
 
-Qilin Hong @[Tang lab](https://tangzheng1.github.io/tanglab/)
+Yunfei Peng, Qilin Hong
 
 Department of Biostatistics and Medical Informatics, University of Wisconsin-Madison
 
@@ -87,7 +90,8 @@ Please use the [issue tracker](https://github.com/KiRinHong/miMediation/issues) 
 - Version 0.3 (03/25/2024): Minor enhancements. 
   - Address scenarios where the mediator matrix is rank-deficient in certain subcompositions. 
   - Added an intermediate argument outcome_type to handle cases with only two unique values in the continuous outcome.
-
+- Version 1.0 (02/27/2026): Incorporate CAMRA method. 
+- 
 ## License
 
 This package is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License, version 3, as published by the Free Software Foundation.
