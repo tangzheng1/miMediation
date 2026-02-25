@@ -13,7 +13,7 @@ See the following for comprehensive and up-to-date documentation:
 
 ## Author
 
-Yunfei Peng, Qilin Hong
+Yunfei Peng, Qiyu Wang, Qilin Hong
 
 Department of Biostatistics and Medical Informatics, University of Wisconsin-Madison
 
