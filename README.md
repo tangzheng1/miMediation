@@ -24,10 +24,10 @@ You can install the package from github with:
 ``` r
 devtools::install_github("tangzheng1/miMediation")
 ```
-You can download the [package source](https://github.com/KiRinHong/miMediation/blob/main/miMediation_0.3.tar.gz) and install it manually with:
+You can download the [package source](https://github.com/tangzheng1/miMediation/blob/main/miMediation_1.0.tar.gz) and install it manually with:
 
 ``` r
-install.packages("miMediation_0.3.tar.gz", repos = NULL, type ="source", dependencies = c("Depends", "Imports")) 
+install.packages("miMediation_1.0.tar.gz", repos = NULL, type ="source", dependencies = c("Depends", "Imports")) 
 ```
 
 You can force installation if you already have old version with:
