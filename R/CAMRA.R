@@ -823,7 +823,8 @@ p_mediation_hdmt_fdr <- function(p_alpha, p_beta ,exact_p =1) {
 #'   treatment = data.camra$treatment, 
 #'   outcome = data.camra$outcome,
 #'   confounders = NULL,
-#'   fdr.alpha = 0.05
+#'   fdr.alpha = 0.05,
+#'   seed = 123
 #' )
 #' 
 #' # View significant microbial mediators

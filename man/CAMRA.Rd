@@ -92,7 +92,8 @@ CAMRA_res <- CAMRA(
   treatment = data.camra$treatment, 
   outcome = data.camra$outcome,
   confounders = NULL,
-  fdr.alpha = 0.05
+  fdr.alpha = 0.05,
+  seed = 123
 )
 
 # View significant microbial mediators
