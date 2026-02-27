@@ -88,9 +88,9 @@ data(data.bmi)
 
 # Run CAMRA mediation screening
 CAMRA_res <- CAMRA(
-  mediators = data.camra$mediators, 
-  treatment = data.camra$treatment, 
-  outcome = data.camra$outcome,
+  mediators = data.bmi$mediators, 
+  treatment = data.bmi$treatment, 
+  outcome = data.bmi$outcome,
   confounders = NULL,
   fdr.alpha = 0.05,
   seed = 123
