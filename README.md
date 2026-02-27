@@ -22,7 +22,7 @@ Department of Biostatistics and Medical Informatics, University of Wisconsin-Mad
 You can install the package from github with:
 
 ``` r
-devtools::install_github("KiRinHong/miMediation")
+devtools::install_github("tangzheng1/miMediation")
 ```
 You can download the [package source](https://github.com/KiRinHong/miMediation/blob/main/miMediation_0.3.tar.gz) and install it manually with:
 
@@ -33,7 +33,7 @@ install.packages("miMediation_0.3.tar.gz", repos = NULL, type ="source", depende
 You can force installation if you already have old version with:
 
 ``` r
-devtools::install_github("KiRinHong/miMediation", force = TRUE)
+devtools::install_github("tangzheng1/miMediation", force = TRUE)
 ```
 ## Troubleshoot Dependencies
 
