@@ -819,9 +819,9 @@ p_mediation_hdmt_fdr <- function(p_alpha, p_beta ,exact_p =1) {
 #' 
 #' # Run CAMRA mediation screening
 #' CAMRA_res <- CAMRA(
-#'   mediators = data.camra$mediators, 
-#'   treatment = data.camra$treatment, 
-#'   outcome = data.camra$outcome,
+#'   mediators = data.bmi$mediators, 
+#'   treatment = data.bmi$treatment, 
+#'   outcome = data.bmi$outcome,
 #'   confounders = NULL,
 #'   fdr.alpha = 0.05,
 #'   seed = 123
