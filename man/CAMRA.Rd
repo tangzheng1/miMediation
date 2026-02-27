@@ -84,7 +84,7 @@ well-calibrated multiple-testing adjustment for mediator discovery.
 \examples{
 \donttest{
 # Load the real dataset
-data(data.camra)
+data(data.bmi)
 
 # Run CAMRA mediation screening
 CAMRA_res <- CAMRA(

@@ -815,7 +815,7 @@ p_mediation_hdmt_fdr <- function(p_alpha, p_beta ,exact_p =1) {
 #' @examples
 #' \donttest{
 #' # Load the real dataset
-#' data(data.camra)
+#' data(data.bmi)
 #' 
 #' # Run CAMRA mediation screening
 #' CAMRA_res <- CAMRA(
