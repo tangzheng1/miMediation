@@ -8,8 +8,8 @@ miMediation is an R package for performing various mediation tests for microbiom
 
 See the following for comprehensive and up-to-date documentation:
 
-- The [miMediation R package manual](https://github.com/KiRinHong/miMediation/blob/main/miMediation_0.1.pdf).
-- The [tutorial walkthrough of the proposed PhyloMed](https://github.com/KiRinHong/miMediation/blob/main/doc/miMediation.pdf).
+- The [miMediation R package manual](https://github.com/tangzheng1/miMediation/blob/main/miMediation_1.0.pdf).
+- The [tutorial walkthrough of the proposed PhyloMed](https://github.com/tangzheng1/miMediation/blob/main/doc/miMediation.pdf).
 
 ## Author
 
@@ -58,6 +58,8 @@ Install again, after dependencies have been installed. You should now be done if
 ``` r
 library(miMediation)
 help(package = "miMediation")
+?CAMRA
+?data.camra
 ?data.cecal
 ?data.zeeviD
 ?phyloMed
@@ -73,13 +75,13 @@ vignette("miMediation", package = "miMediation")
 Otherwise, it will not build vignette by default if you install the package from github because they are time consuming and may require additional packages (here, require `prettydoc` R package, install it before building vignette). You can force building (take ~7 mins) with:
 
 ``` r
-devtools::install_github("KiRinHong/miMediation", build_vignettes = TRUE)
+devtools::install_github("tangzheng1/miMediation", build_vignettes = TRUE)
 ```
 Then, the vignette would be available from within R.
 
 ## Getting help
 
-Please use the [issue tracker](https://github.com/KiRinHong/miMediation/issues) to post any bugs, suggestions, or the installation problem.
+Please use the [issue tracker](https://github.com/tangzheng1/miMediation/issues) to post any bugs, suggestions, or the installation problem.
 
 ## News
 
@@ -90,8 +92,8 @@ Please use the [issue tracker](https://github.com/KiRinHong/miMediation/issues) 
 - Version 0.3 (03/25/2024): Minor enhancements. 
   - Address scenarios where the mediator matrix is rank-deficient in certain subcompositions. 
   - Added an intermediate argument outcome_type to handle cases with only two unique values in the continuous outcome.
-- Version 1.0 (02/27/2026): Incorporate CAMRA method. 
-- 
+- Version 1.0 (02/26/2026): Incorporate CAMRA method. 
+  
 ## License
 
 This package is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License, version 3, as published by the Free Software Foundation.
