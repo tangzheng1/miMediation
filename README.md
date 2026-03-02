@@ -23,26 +23,32 @@ Department of Biostatistics and Medical Informatics, University of Wisconsin-Mad
 You can install the package from github with:
 
 ``` r
-devtools::install_github("tangzheng1/miMediation")
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("tangzheng1/miMediation", dependencies = TRUE)
 ```
 You can download the [package source](https://github.com/tangzheng1/miMediation/blob/main/miMediation_1.0.tar.gz) and install it manually with:
 
 ``` r
-install.packages("miMediation_1.0.tar.gz", repos = NULL, type ="source", dependencies = c("Depends", "Imports")) 
+remotes::install_local("miMediation_1.0.tar.gz", dependencies = TRUE, force = TRUE)
 ```
 
 You can force installation if you already have old version with:
 
 ``` r
-devtools::install_github("tangzheng1/miMediation", force = TRUE)
+remotes::install_github("tangzheng1/miMediation", dependencies = TRUE, force = TRUE)
 ```
 ## Troubleshoot Dependencies
 
-At this point, there may be complaints about missing dependencies. To install missing dependencies on either [CRAN](https://cran.r-project.org/) or [Bioconductor](http://bioconductor.org/install/), start a fresh R session and enter the following:
+At this point, there may be complaints about missing dependencies. To install missing dependencies on [CRAN](https://cran.r-project.org/), [Github](https://github.com), or [Bioconductor](http://bioconductor.org/install/), start a fresh R session and enter the following:
 
 ``` r
 # For CRAN
 install.packages("missing_package")
+
+# For Github packages
+if (!require("devtools")) install.packages("devtools")
+devtools::install_github(".../missing_package")
+
 # For Biocondocutor
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
