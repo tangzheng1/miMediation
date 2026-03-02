@@ -39,7 +39,7 @@ remotes::install_github("tangzheng1/miMediation", dependencies = TRUE, force = T
 ```
 ## Troubleshoot Dependencies
 
-At this point, there may be complaints about missing dependencies. To install missing dependencies on [CRAN](https://cran.r-project.org/), Github, or [Bioconductor](http://bioconductor.org/install/), start a fresh R session and enter the following:
+At this point, there may be complaints about missing dependencies. To install missing dependencies on [CRAN](https://cran.r-project.org/), [Github](https://github.com), or [Bioconductor](http://bioconductor.org/install/), start a fresh R session and enter the following:
 
 ``` r
 # For CRAN
