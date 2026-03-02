@@ -36,7 +36,7 @@ remotes::install_local("miMediation_1.0.tar.gz", dependencies = TRUE, force = TR
 You can force installation if you already have old version with:
 
 ``` r
-devtools::install_github("tangzheng1/miMediation", force = TRUE)
+remotes::install_github("tangzheng1/miMediation", force = TRUE, dependencies = TRUE)
 ```
 ## Troubleshoot Dependencies
 
