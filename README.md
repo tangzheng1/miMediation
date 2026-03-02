@@ -29,14 +29,13 @@ remotes::install_github("tangzheng1/miMediation", dependencies = TRUE)
 You can download the [package source](https://github.com/tangzheng1/miMediation/blob/main/miMediation_1.0.tar.gz) and install it manually with:
 
 ``` r
-if (!require("remotes")) install.packages("remotes")
 remotes::install_local("miMediation_1.0.tar.gz", dependencies = TRUE, force = TRUE)
 ```
 
 You can force installation if you already have old version with:
 
 ``` r
-remotes::install_github("tangzheng1/miMediation", force = TRUE, dependencies = TRUE)
+remotes::install_github("tangzheng1/miMediation", dependencies = TRUE, force = TRUE)
 ```
 ## Troubleshoot Dependencies
 
@@ -45,6 +44,7 @@ At this point, there may be complaints about missing dependencies. To install mi
 ``` r
 # For CRAN
 install.packages("missing_package")
+
 # For Biocondocutor
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
