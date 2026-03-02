@@ -15,16 +15,16 @@ This is a practical tutorial on the use of the miMediation package for conductin
 
 Identifying microbial taxa that mediate the effect of exposures on health outcomes is central to understanding causal pathways. However, microbiome sequencing primarily measures relative abundance (RA). Conducting regression analyses directly on RA can exhibit distorted null behavior due to compositionality (the unit-sum constraint), leading to inflated false positives in mediation inference. The following figure illustrates how compositionality can induce apparent exposure-taxon and taxon-outcome associations on the RA scale even when AA-scale mediation is sparse and localized.
 
-```{r echo=FALSE, fig.align='center', out.width="65%", out.height="65%"}
+```{r echo=FALSE, out.width="400px", out.height="300px", fig.align='center'}
 knitr::include_graphics("CAMRAexample.png")
 ```
 
-The biologically relevant target is typically the absolute abundance (AA) scale. CAMRA is proposed as a principled remedy: it takes standard RA/count data as input but targets mediation effects defined on the AA scale, recovering the AA-level evidence from RA observations to ensure rigorous False Discovery Rate (FDR) control. If the latent AA variable $W_{ik}$ for subject $i$ and taxon $k$ were observed, the two standard causal mediation models would be:
+The biologically relevant target is typically the absolute abundance (AA) scale. **CAMRA** is proposed as a principled remedy: it takes standard RA/count data as input but targets mediation effects defined on the AA scale, recovering the AA-level evidence from RA observations to ensure rigorous False Discovery Rate (FDR) control. If the latent AA variable $W_{ik}$ for subject $i$ and taxon $k$ were observed, the two standard causal mediation models would be:
 
 **AA-based taxa model: **
 $$\mathbb{E}(W_{ik}|E_{i})=\exp(\alpha_{k0}+E_{i}\alpha_{k})$$
 **AA-based outcome model: **
-$$g(\mathbb{E}(Y_{i})|E_{i},\log(W_{i}))=\beta_{0}+E_{i}\beta_{E}+\sum_{k=1}^{p}\log(W_{ik})\beta_{k}$$
+$$\mathbb{E}[Y_{i}|E_{i},\log(W_{i})]=\beta_{0}+E_{i}\beta_{E}+\sum_{k=1}^{p}\log(W_{ik})\beta_{k}$$
 
 The mediation null hypothesis for taxon $k$ is $$H_{0k}:\alpha_{k}\beta_{k}=0.$$ Because AA is unobserved, CAMRA addresses this through three modular steps:
 
