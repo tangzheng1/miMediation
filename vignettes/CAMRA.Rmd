@@ -15,8 +15,8 @@ This is a practical tutorial on the use of the miMediation package for conductin
 
 Identifying microbial taxa that mediate the effect of exposures on health outcomes is central to understanding causal pathways. However, microbiome sequencing primarily measures relative abundance (RA). Conducting regression analyses directly on RA can exhibit distorted null behavior due to compositionality (the unit-sum constraint), leading to inflated false positives in mediation inference. The following figure illustrates how compositionality can induce apparent exposure-taxon and taxon-outcome associations on the RA scale even when AA-scale mediation is sparse and localized.
 
-```{r fig-s1, echo=FALSE, fig.align='center', out.width="65%", out.height="65%"}
-knitr::include_graphics("/Users/edwardpeng/Desktop/figS1.png")
+```{r echo=FALSE, fig.align='center', out.width="65%", out.height="65%"}
+knitr::include_graphics("CAMRAexample.png")
 ```
 
 The biologically relevant target is typically the absolute abundance (AA) scale. CAMRA is proposed as a principled remedy: it takes standard RA/count data as input but targets mediation effects defined on the AA scale, recovering the AA-level evidence from RA observations to ensure rigorous False Discovery Rate (FDR) control. If the latent AA variable $W_{ik}$ for subject $i$ and taxon $k$ were observed, the two standard causal mediation models would be:
@@ -49,8 +49,8 @@ First, we load the package and the dataset. (`data.bmi` is the same dataset we u
 ```{r warning=FALSE, message=FALSE}
 library(miMediation)
 data("data.bmi")
-Trt <- data.bmi$treatment
-table(Trt) # 0: China, 1: United States
+E <- data.bmi$exposure
+table(E) # 0: China, 1: United States
 
 M <- data.bmi$mediators
 dim(M)
@@ -61,10 +61,10 @@ summary(Y)
 Then we use `CAMRA` function in the function to detect the significant mediators. The function can also return the q-value of all taxa, and the path-specific p-values $p_{\alpha_k}$ and $p_{\beta_k}$.
 
 ```{r}
-CAMRA_res <- miMediation::CAMRA(
-  mediators = data.bmi$mediators, 
-  treatment = data.bmi$treatment, 
-  outcome = data.bmi$outcome,
+CAMRA_res <- CAMRA(
+  mediators = M, 
+  exposure = E, 
+  outcome = Y,
   confounders = NULL,
   fdr.alpha = 0.05,
   seed = 123
