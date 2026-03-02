@@ -762,7 +762,7 @@ p_mediation_hdmt_fdr <- function(p_alpha, p_beta ,exact_p =1) {
 #' @param exposure A numeric vector of the exposure.
 #' @param outcome A numeric vector of the outcome variable (currently treated as a continuous variable).
 #' @param confounders An optional numeric vector or matrix containing confounders that may affect
-#' the treatment, mediators and outcome. Each row is a subject and each column
+#' the exposure, mediators and outcome. Each row is a subject and each column
 #' is a specific confounder, e.g., age or sex. Default is NULL.
 #' @param pseudo A numeric value for the pseudo-count added before log-ratio transformations. Default is 0.5.
 #' @param fdr.alpha An optional numeric value for the desired FDR significance level in identifying
@@ -771,10 +771,6 @@ p_mediation_hdmt_fdr <- function(p_alpha, p_beta ,exact_p =1) {
 #' are computed: 0 = approximation method, 1 = exact method. Default is 0.
 #' @param screen A logical value indicating whether to screen high-dimensional mediators before testing. 
 #' Default is FALSE.
-#' @param const A numeric multiplier used for the number of filtered bacteria during screening 
-#' (const * n/log(n)). Default is 2.
-#' @param CClasso A logical value indicating whether to use fastCCLasso to compute correlations 
-#' instead of SparCC. Default is FALSE.
 #' @param seed An integer seed for reproducibility. Default is 42.
 #'
 #' @details 
@@ -796,8 +792,6 @@ p_mediation_hdmt_fdr <- function(p_alpha, p_beta ,exact_p =1) {
 #' \item{pval.beta}{A numeric vector of p-values from the microbiome-outcome association test (conditional on exposure).}
 #' \item{qval.med}{A numeric vector of taxon-level mediation test q-values.}
 #' \item{sig.mediators}{A vector of selected microbial mediators significant at the `fdr.alpha` level.}
-#' \item{index_detected}{The column indices of the significant mediators in the original matrix.}
-#' \item{runtime_sec}{The total execution time in seconds.}
 #' 
 #' @author Qiyu Wang \email{wang_qy@@mail.ustc.edu.cn}, Yunfei Peng \email{peng228@@wisc.edu}
 #'
@@ -820,7 +814,7 @@ p_mediation_hdmt_fdr <- function(p_alpha, p_beta ,exact_p =1) {
 #' # Run CAMRA mediation screening
 #' CAMRA_res <- CAMRA(
 #'   mediators = data.bmi$mediators, 
-#'   treatment = data.bmi$treatment, 
+#'   exposure = data.bmi$exposure, 
 #'   outcome = data.bmi$outcome,
 #'   confounders = NULL,
 #'   fdr.alpha = 0.05,
@@ -831,28 +825,25 @@ p_mediation_hdmt_fdr <- function(p_alpha, p_beta ,exact_p =1) {
 #' print(CAMRA_res$sig.mediators)
 #' }
 CAMRA <- function(mediators,
-                  treatment,
+                  exposure,
                   outcome,
                   confounders= NULL ,
                   pseudo=0.5,
                   fdr.alpha =0.05,
                   hdmt.exact = 0,
                   screen = FALSE,        
-                  const =2,              
-                  CClasso = FALSE,       
                   seed=42)
 {
   set.seed(seed)
-  t0 <- proc.time()[["elapsed"]]
   
   select_otu <- c(1:ncol(mediators))
   
   if (isTRUE(screen)) {
     select_otu <- pre_filter_fun(
       count_m = mediators,
-      treat_cov    = treatment,
+      treat_cov    = exposure,
       y            = outcome,
-      const        = const ,
+      const        = 2 ,
       seed         = seed,
       sudo         = pseudo,
       cov_ad       = confounders
@@ -860,14 +851,14 @@ CAMRA <- function(mediators,
   }
   
   res1 <- recover_l_PALM(count_m=mediators,
-                         treat_cov = treatment,
+                         treat_cov = exposure,
                          cov_ad = confounders)
   
   res2 <- recover_r(count_m=mediators,
-                    treat_cov = treatment,
-                    y =outcome,
+                    treat_cov = exposure,
+                    y = outcome,
                     cov_ad = confounders,
-                    CClasso = CClasso,
+                    CClasso = FALSE,
                     sudo=pseudo)
   
   p1 <- res1$p
@@ -933,15 +924,10 @@ CAMRA <- function(mediators,
   
   globalp <- min(p_vec_all, na.rm = TRUE)   
   
-  runtime_sec <- as.numeric(proc.time()[["elapsed"]] - t0)
-  
-  return(list(index_detected=idx_detected,
+  return(list(
               qval.med =p_vec_all,
-              runtime_sec = runtime_sec,
               sig.mediators = colnames(mediators)[idx_detected],
               pval.alpha = p1,
-              pval.beta =p2,
-              beta_l = res1$beta_l,
-              beta_r = res2$beta_r,
-              filter_index = select_otu))
+              pval.beta =p2)
+         )
 }

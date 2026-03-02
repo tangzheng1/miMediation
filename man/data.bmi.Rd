@@ -7,7 +7,7 @@
 \format{
 data.bmi contains the following components:
 \describe{
-  \item{treatment}{treatment indicator.}
+  \item{exposure}{exposure indicator.}
   \item{mediators}{an abundance matrix of microbial taxa.}
   \item{outcome}{continuous outcome variable.}
 }

@@ -6,15 +6,13 @@
 \usage{
 CAMRA(
   mediators,
-  treatment,
+  exposure,
   outcome,
   confounders = NULL,
   pseudo = 0.5,
   fdr.alpha = 0.05,
   hdmt.exact = 0,
   screen = FALSE,
-  const = 2,
-  CClasso = FALSE,
   seed = 42
 )
 }
@@ -22,10 +20,12 @@ CAMRA(
 \item{mediators}{A named numeric matrix containing microbiome abundance. Each row is a
 subject and each column is a taxon. Column name contains the taxon name.}
 
+\item{exposure}{A numeric vector of the exposure.}
+
 \item{outcome}{A numeric vector of the outcome variable (currently treated as a continuous variable).}
 
 \item{confounders}{An optional numeric vector or matrix containing confounders that may affect
-the treatment, mediators and outcome. Each row is a subject and each column
+the exposure, mediators and outcome. Each row is a subject and each column
 is a specific confounder, e.g., age or sex. Default is NULL.}
 
 \item{pseudo}{A numeric value for the pseudo-count added before log-ratio transformations. Default is 0.5.}
@@ -39,15 +39,7 @@ are computed: 0 = approximation method, 1 = exact method. Default is 0.}
 \item{screen}{A logical value indicating whether to screen high-dimensional mediators before testing. 
 Default is FALSE.}
 
-\item{const}{A numeric multiplier used for the number of filtered bacteria during screening 
-(const * n/log(n)). Default is 2.}
-
-\item{CClasso}{A logical value indicating whether to use fastCCLasso to compute correlations 
-instead of SparCC. Default is FALSE.}
-
 \item{seed}{An integer seed for reproducibility. Default is 42.}
-
-\item{exposure}{A numeric vector of the exposure.}
 }
 \value{
 A list containing the following components:
@@ -55,8 +47,6 @@ A list containing the following components:
 \item{pval.beta}{A numeric vector of p-values from the microbiome-outcome association test (conditional on exposure).}
 \item{qval.med}{A numeric vector of taxon-level mediation test q-values.}
 \item{sig.mediators}{A vector of selected microbial mediators significant at the `fdr.alpha` level.}
-\item{index_detected}{The column indices of the significant mediators in the original matrix.}
-\item{runtime_sec}{The total execution time in seconds.}
 }
 \description{
 CAMRA is a method for taxon-level microbiome mediator discovery that delivers 
@@ -89,7 +79,7 @@ data(data.bmi)
 # Run CAMRA mediation screening
 CAMRA_res <- CAMRA(
   mediators = data.bmi$mediators, 
-  treatment = data.bmi$treatment, 
+  exposure = data.bmi$exposure, 
   outcome = data.bmi$outcome,
   confounders = NULL,
   fdr.alpha = 0.05,
