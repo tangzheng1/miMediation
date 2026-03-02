@@ -32,7 +32,7 @@ Imports:
     HDMT,
     stats
 Remotes:
-    ZjpWei/PALM_package
+    ZjpWei/PALM_package,
     bioc::phyloseq,
     bioc::ggtree
 Suggests:
