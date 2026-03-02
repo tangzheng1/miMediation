@@ -10,6 +10,7 @@ See the following for comprehensive and up-to-date documentation:
 
 - The [miMediation R package manual](https://github.com/tangzheng1/miMediation/blob/main/miMediation_1.0.pdf).
 - The [tutorial walkthrough of the proposed PhyloMed](https://github.com/tangzheng1/miMediation/blob/main/vignettes/miMediation.pdf).
+- The [tutorial walkthrough of the proposed CAMRA](https://github.com/tangzheng1/miMediation/blob/main/vignettes/CAMRA.pdf).
 
 ## Author
 
@@ -59,7 +60,7 @@ Install again, after dependencies have been installed. You should now be done if
 library(miMediation)
 help(package = "miMediation")
 ?CAMRA
-?data.camra
+?data.bmi
 ?data.cecal
 ?data.zeeviD
 ?phyloMed
@@ -92,7 +93,7 @@ Please use the [issue tracker](https://github.com/tangzheng1/miMediation/issues)
 - Version 0.3 (03/25/2024): Minor enhancements. 
   - Address scenarios where the mediator matrix is rank-deficient in certain subcompositions. 
   - Added an intermediate argument outcome_type to handle cases with only two unique values in the continuous outcome.
-- Version 1.0 (02/26/2026): Incorporate CAMRA method. 
+- Version 1.0 (02/27/2026): Incorporate CAMRA method. 
   
 ## License
 
