@@ -9,8 +9,8 @@ miMediation is an R package for performing various mediation tests for microbiom
 See the following for comprehensive and up-to-date documentation:
 
 - The [miMediation R package manual](https://github.com/tangzheng1/miMediation/blob/main/miMediation_1.0.pdf).
-- The [tutorial walkthrough of the proposed PhyloMed](https://github.com/tangzheng1/miMediation/blob/main/vignettes/miMediation.pdf).
-- The [tutorial walkthrough of the proposed CAMRA](https://github.com/tangzheng1/miMediation/blob/main/vignettes/CAMRA.pdf).
+- The [tutorial of the running PhyloMed](https://github.com/tangzheng1/miMediation/blob/main/vignettes/miMediation.pdf).
+- The [tutorial of the running CAMRA](https://github.com/tangzheng1/miMediation/blob/main/vignettes/CAMRA.pdf).
 
 ## Author
 
