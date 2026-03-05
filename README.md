@@ -2,15 +2,15 @@
 
 miMediation is an R package for performing various mediation tests for microbiome data. It currently implements two methods CAMRA and PhyloMed listed below
 
-- CAMRA reference: Wang Q, Li Y, Peng Y, Tang ZZ (2026). Error control in microbiome mediator discovery: benchmark and remedy. Submitted.
+- CAMRA reference: Wang Q, Li Y, Peng Y, Tang ZZ (2026). Error control in microbiome mediator discovery: benchmarking and remedy. Submitted.
 - PhyloMed reference: Hong Q, Chen G, Tang ZZ (2023). [PhyloMed: a phylogeny-based test of mediation effect in microbiome.](https://doi.org/10.1186/s13059-023-02902-3) Genome Biology, 24(1), 1-21.
 
 
 See the following for comprehensive and up-to-date documentation:
 
 - The [miMediation R package manual](https://github.com/tangzheng1/miMediation/blob/main/miMediation_1.0.pdf).
-- The [tutorial walkthrough of the proposed PhyloMed](https://github.com/tangzheng1/miMediation/blob/main/vignettes/miMediation.pdf).
-- The [tutorial walkthrough of the proposed CAMRA](https://github.com/tangzheng1/miMediation/blob/main/vignettes/CAMRA.pdf).
+- The [tutorial of using CAMRA](https://github.com/tangzheng1/miMediation/blob/main/vignettes/CAMRA.pdf).
+- The [tutorial of using PhyloMed](https://github.com/tangzheng1/miMediation/blob/main/vignettes/miMediation.pdf).
 
 ## Author
 
