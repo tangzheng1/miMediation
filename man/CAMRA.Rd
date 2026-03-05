@@ -91,7 +91,7 @@ print(CAMRA_res$sig.mediators)
 }
 }
 \references{
-Wang Q, Li Y, Peng Y, Tang ZZ (2026). Error control for microbiome mediator analysis: benchmarking and remedy. Submitted.
+Wang Q, Li Y, Peng Y, Tang ZZ (2026). Error control for microbiome mediation analysis: benchmarking and remedy. Submitted.
 
 Wei Z, Hong Q, Chen G, Hartert TV, Rosas-Salazar C, Das SR, Shilts MH, Levin AM, Tang ZZ (2026). Fast and reliable association discovery in large-scale microbiome studies and meta-analyses using PALM. Genome Biology, accepted.
 
