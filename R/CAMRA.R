@@ -796,7 +796,7 @@ p_mediation_hdmt_fdr <- function(p_alpha, p_beta ,exact_p =1) {
 #' @author Qiyu Wang \email{wang_qy@@mail.ustc.edu.cn}, Yunfei Peng \email{peng228@@wisc.edu}
 #'
 #' @references 
-#' Wang Q, Li Y, Peng Y, Tang ZZ (2026). Error control in microbiome mediator discovery: benchmark and remedy. Submitted.
+#' Wang Q, Li Y, Peng Y, Tang ZZ (2026). Error control in microbiome mediator discovery: benchmarking and remedy. Submitted.
 #' 
 #' Wei Z, Hong Q, Chen G, Hartert TV, Rosas-Salazar C, Das SR, Shilts MH, Levin AM, Tang ZZ (2026). Fast and reliable association discovery in large-scale microbiome studies and meta-analyses using PALM. Genome Biology, accepted.
 #' 
