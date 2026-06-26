@@ -38,7 +38,8 @@ CAMRA utilizes the PALAR transformation, mapping RA profiles to transformed pred
 
 **Step 3. Composite-null Mediation Testing: **
 
-CAMRA applies the HDMT procedure to the path-specific p-values ($p_{\alpha_k}$ and $p_{\beta_k}$) to estimate the proportions of the three sub-nulls, yielding calibrated taxon-level mediation q-values for FDR control.
+CAMRA provides two implementations for composite-null mediation testing step. When `method = "hdmt"`, CAMRA applies HDMT to obtain taxon-level q-values by explicitly accounting for the mixture structure of the composite null. When `method = "sbmh"`,
+CAMRA uses the Sampson-Boca-Moore-Heller procedure to construct subset-adjusted mediation p-values, followed by FDR adjustment.
 
 ## Application: Gut microbiome mediation of between-country differences in BMI
 

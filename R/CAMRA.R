@@ -771,6 +771,8 @@ p_mediation_hdmt_fdr <- function(p_alpha, p_beta ,exact_p =1) {
 #' are computed: 0 = approximation method, 1 = exact method. Default is 0.
 #' @param screen A logical value indicating whether to screen high-dimensional mediators before testing. 
 #' Default is FALSE.
+#' @param method Character string specifying the mediation testing method used to combine exposure-microbiome and microbiome-outcome p-values. 
+#' Options are \code{"hdmt"} and \code{"sbmh"}. Default is \code{"hdmt"}.
 #' @param seed An integer seed for reproducibility. Default is 42.
 #'
 #' @details 
@@ -783,9 +785,11 @@ p_mediation_hdmt_fdr <- function(p_alpha, p_beta ,exact_p =1) {
 #' 
 #' These two path-specific signals are combined using the max-P joint-significance statistic 
 #' \eqn{\max\{p_{\alpha_k}, p_{\beta_k}\}} for testing the composite mediation null 
-#' \eqn{H_{0k}: \alpha_k \beta_k = 0}. Finally, CAMRA applies HDMT to obtain taxon-level 
-#' q-values by explicitly accounting for the mixture structure of the composite null, enabling 
-#' well-calibrated multiple-testing adjustment for mediator discovery.
+#' \eqn{H_{0k}: \alpha_k \beta_k = 0}. CAMRA provides two implementations for this
+#' composite-null mediation testing step. When \code{method = "hdmt"}, CAMRA applies HDMT to obtain taxon-level 
+#' q-values by explicitly accounting for the mixture structure of the composite null. When \code{method = "sbmh"},
+#' CAMRA uses the Sampson-Boca-Moore-Heller procedure to construct subset-adjusted mediation p-values,
+#' followed by FDR adjustment.
 #'
 #' @return A list containing the following components:
 #' \item{pval.alpha}{A numeric vector of p-values from the exposure-microbiome association test.}
@@ -832,10 +836,11 @@ CAMRA <- function(mediators,
                   fdr.alpha =0.05,
                   hdmt.exact = 0,
                   screen = FALSE,        
+                  method = c("hdmt", "sbmh"),
                   seed=42)
 {
   set.seed(seed)
-  
+  method <- match.arg(method)
   select_otu <- c(1:ncol(mediators))
   
   if (isTRUE(screen)) {
@@ -886,40 +891,65 @@ CAMRA <- function(mediators,
     p_vec_all[-select_otu] <- 1
   }
   
-  stopifnot(hdmt.exact %in% c(0, 1))
-  
-  exact_first  <- as.integer(hdmt.exact)          
-  exact_second <- 1L - exact_first
-  
-  tmp_locfdr <- try(
-    p_mediation_hdmt_fdr(
-      p_matrix[select_otu, 1],
-      p_matrix[select_otu, 2],
-      exact_p = exact_first
-    ),
-    silent = TRUE
-  )
-  
-  if (inherits(tmp_locfdr, "try-error")) {
-    tmp_locfdr <- try(
+  if (method == "hdmt") {
+    
+    stopifnot(hdmt.exact %in% c(0, 1))
+    
+    exact_first  <- as.integer(hdmt.exact)
+    exact_second <- 1L - exact_first
+    
+    tmp_q <- try(
       p_mediation_hdmt_fdr(
         p_matrix[select_otu, 1],
         p_matrix[select_otu, 2],
-        exact_p = exact_second
+        exact_p = exact_first
       ),
       silent = TRUE
     )
-  }
-  
-  if (inherits(tmp_locfdr, "try-error")) {
-    selected_values <- p_vec_all
-    idx_detected    <- which(selected_values <fdr.alpha)  
     
-    locfdr <- rep(NA_real_, length(select_otu))
-  } else {
-    p_vec_all[select_otu] <- tmp_locfdr
-    idx_sub <- which(tmp_locfdr<= fdr.alpha)
-    idx_detected <- select_otu[idx_sub]
+    if (inherits(tmp_q, "try-error")) {
+      tmp_q <- try(
+        p_mediation_hdmt_fdr(
+          p_matrix[select_otu, 1],
+          p_matrix[select_otu, 2],
+          exact_p = exact_second
+        ),
+        silent = TRUE
+      )
+    }
+    
+    if (inherits(tmp_q, "try-error")) {
+      ## fallback to original BH-adjusted maxP values
+      selected_values <- p_vec_all
+      idx_detected <- which(selected_values < fdr.alpha)
+    } else {
+      p_vec_all[select_otu] <- as.numeric(tmp_q)
+      idx_sub <- which(tmp_q <= fdr.alpha)
+      idx_detected <- select_otu[idx_sub]
+    }
+    
+  } else if (method == "sbmh") {
+    
+    tmp_q <- try(
+      MultiMed::medTest.SBMH(
+        p_matrix[select_otu, 1],
+        p_matrix[select_otu, 2],
+        MCP.type = "FDR",
+        t1 = fdr.alpha / 2,
+        t2 = fdr.alpha / 2
+      ),
+      silent = TRUE
+    )
+    
+    if (inherits(tmp_q, "try-error")) {
+      ## fallback to original BH-adjusted maxP values
+      selected_values <- p_vec_all
+      idx_detected <- which(selected_values < fdr.alpha)
+    } else {
+      p_vec_all[select_otu] <- as.numeric(tmp_q)
+      idx_sub <- which(tmp_q <= fdr.alpha)
+      idx_detected <- select_otu[idx_sub]
+    }
   }
   
   globalp <- min(p_vec_all, na.rm = TRUE)   

@@ -1,6 +1,6 @@
 Package: miMediation
-Version: 1.0
-Date: 2026-03-05
+Version: 1.1
+Date: 2026-06-26
 Title: Mediation Tests for Microbime Data
 Description: Testing mediation effects of microbiome.
 Author: Qilin Hong, Yunfei Peng
@@ -30,6 +30,7 @@ Imports:
     gtools,
     glmnet,
     HDMT,
+    MultiMed,
     stats
 Remotes:
     ZjpWei/PALM_package,
@@ -39,7 +40,7 @@ Suggests:
     knitr,
     prettydoc,
     rmarkdown
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 VignetteBuilder: 
     knitr,
     prettydoc

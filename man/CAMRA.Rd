@@ -13,6 +13,7 @@ CAMRA(
   fdr.alpha = 0.05,
   hdmt.exact = 0,
   screen = FALSE,
+  method = c("hdmt", "sbmh"),
   seed = 42
 )
 }
@@ -38,6 +39,9 @@ are computed: 0 = approximation method, 1 = exact method. Default is 0.}
 
 \item{screen}{A logical value indicating whether to screen high-dimensional mediators before testing. 
 Default is FALSE.}
+
+\item{method}{Character string specifying the mediation testing method used to combine exposure-microbiome and microbiome-outcome p-values. 
+Options are \code{"hdmt"} and \code{"sbmh"}. Default is \code{"hdmt"}.}
 
 \item{seed}{An integer seed for reproducibility. Default is 42.}
 }
@@ -67,9 +71,11 @@ with debiased inference to obtain \eqn{p_{\beta_k}}.
 
 These two path-specific signals are combined using the max-P joint-significance statistic 
 \eqn{\max\{p_{\alpha_k}, p_{\beta_k}\}} for testing the composite mediation null 
-\eqn{H_{0k}: \alpha_k \beta_k = 0}. Finally, CAMRA applies HDMT to obtain taxon-level 
-q-values by explicitly accounting for the mixture structure of the composite null, enabling 
-well-calibrated multiple-testing adjustment for mediator discovery.
+\eqn{H_{0k}: \alpha_k \beta_k = 0}. CAMRA provides two implementations for this
+composite-null mediation testing step. When \code{method = "hdmt"}, CAMRA applies HDMT to obtain taxon-level 
+q-values by explicitly accounting for the mixture structure of the composite null. When \code{method = "sbmh"},
+CAMRA uses the Sampson-Boca-Moore-Heller procedure to construct subset-adjusted mediation p-values,
+followed by FDR adjustment.
 }
 \examples{
 \donttest{
