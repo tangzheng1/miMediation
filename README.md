@@ -99,7 +99,9 @@ Please use the [issue tracker](https://github.com/tangzheng1/miMediation/issues)
 - Version 0.3 (03/25/2024): Minor enhancements. 
   - Address scenarios where the mediator matrix is rank-deficient in certain subcompositions. 
   - Added an intermediate argument outcome_type to handle cases with only two unique values in the continuous outcome.
-- Version 1.0 (02/27/2026): Incorporate CAMRA method. 
+- Version 1.0 (02/27/2026): Incorporate CAMRA method.
+- Version 1.1 (06/25/2026): Minor update.
+  - Added an argument to allow users to choose between HDMT-based and SBMH-based mediation testing in CAMRA.
   
 ## License
 
