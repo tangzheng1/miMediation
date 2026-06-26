@@ -26,10 +26,10 @@ You can install the package from github with:
 if (!require("remotes")) install.packages("remotes")
 remotes::install_github("tangzheng1/miMediation", dependencies = TRUE)
 ```
-You can download the [package source](https://github.com/tangzheng1/miMediation/blob/main/miMediation_1.0.tar.gz) and install it manually with:
+You can download the [package source](https://github.com/tangzheng1/miMediation/blob/main/miMediation_1.1.tar.gz) and install it manually with:
 
 ``` r
-remotes::install_local("miMediation_1.0.tar.gz", dependencies = TRUE, force = TRUE)
+remotes::install_local("miMediation_1.1.tar.gz", dependencies = TRUE, force = TRUE)
 ```
 
 You can force installation if you already have old version with:
